@@ -27,9 +27,60 @@ To implement HASH ALGORITHM
 
 
 ## Program:
-
+## DEVELPED BY :RADHIMEENA M
+## REG NO:212223040159
+```
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+void encrypt(char *plaintext, int shift, char *ciphertext) {
+ int i;
+ for (i = 0; plaintext[i] != '\0'; i++) {
+ char ch = plaintext[i];
+ if (ch >= 'A' && ch <= 'Z') {
+ ciphertext[i] = (ch + shift - 'A') % 26 + 'A';
+ } else if (ch >= 'a' && ch <= 'z') {
+ ciphertext[i] = (ch + shift - 'a') % 26 + 'a';
+ } else {
+ ciphertext[i] = ch;
+ }
+ }
+ ciphertext[i] = '\0';
+}
+void decrypt(char *ciphertext, int shift, char *plaintext) {
+ int i;
+ for (i = 0; ciphertext[i] != '\0'; i++) {
+ char ch = ciphertext[i];
+ if (ch >= 'A' && ch <= 'Z') {
+ plaintext[i] = (ch - shift - 'A' + 26) % 26 + 'A';
+ } else if (ch >= 'a' && ch <= 'z') {
+ plaintext[i] = (ch - shift - 'a' + 26) % 26 + 'a';
+ } else {
+ plaintext[i] = ch;
+ }
+ }
+ plaintext[i] = '\0';
+}
+int main() {
+ char plaintext[MAX], ciphertext[MAX];
+ int shift;
+ printf("\nEnter the plaintext: ");
+ fgets(plaintext, sizeof(plaintext), stdin);
+ plaintext[strcspn(plaintext, "\n")] = 0;
+ printf("\nEnter the shift value (1-25): ");
+ scanf("%d", &shift);
+ encrypt(plaintext, shift, ciphertext);
+ printf("\nEncrypted text: %s\n", ciphertext);
+ decrypt(ciphertext, shift, plaintext);
+ printf("Decrypted text: %s\n", plaintext);
+ return 0;
+}
+```
 
 ## Output:
+
+![image](https://github.com/user-attachments/assets/5232779e-e682-4794-b51b-fe34d6f8a128)
+
 
 ## Result:
 The program is executed successfully.
